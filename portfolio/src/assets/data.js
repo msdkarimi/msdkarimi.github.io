@@ -3,147 +3,158 @@ import tools from './imgs/tools.png'
 import agents from './imgs/agents.png'
 import edu from './imgs/edu.png'
 
-
-export const  personal_data = [{content:"Masoud Karimi", id:"name"}, {id:"role", content:"Generative AI Engineer"},{id:"Education", at:"Politecnico di Torino", content:"M.Sc. in Computer Engineering - AI & Data Analytics @ Politecnico di Torino"} , {id:"Email", content:"itsmasoudkarimi@gmail.com"}, {id:"Location", content:"Turin, Italy"}]
 export const profile = {
   name: "Masoud Karimi",
   role: "Generative AI Engineer",
-  profile: "I’m a multidisciplinary AI specialist with over two years of experience designing and building intelligent, ML-driven software and AI agents from concept to launch.."
+  profile: "Multidisciplinary AI engineer with 2+ years building production-grade intelligent systems — from LLM-powered multi-agent pipelines to advanced computer vision models. I bridge research and engineering: prototype fast, ship clean, scale confidently.",
+  github: "https://github.com/itsmasoudkarimi",
+  linkedin: "https://linkedin.com/in/masoud-karimi",
+  email: "itsmasoudkarimi@gmail.com",
+  location: "Turin, Italy",
+  highlights: ["LLM Agents", "RAG / KG", "Diffusion Models", "Multi-GPU", "FastAPI", "Docker"],
 }
 
-export const education = {id:"Education", image:edu, content:"Education: M.Sc. in Computer Engineering - AI & Data Analytics", at:"Politecnico di Torino"}
+export const stats = [
+  { label: "YEARS", value: "2+" },
+  { label: "ROLES", value: "2" },
+  { label: "PROJECTS", value: "4" },
+]
+
+export const education = {
+  id: "Education",
+  image: edu,
+  content: "Education: M.Sc. in Computer Engineering - AI & Data Analytics",
+  at: "Politecnico di Torino",
+}
+
 export const left_side = {
-  Contact: [
-    {id: "Email", content: "itsmasoudkarimi@gmail .com"}, 
-    {id: "Address", content:"Turin, Italy"},
-  ],
   Education: [
-    {id: "M.Sc.", content:"Computer Engineering - AI & Data Analytics" , at:" at Politecnico of Turin"},
-    {id: "B.Sc.", content:"Computer Engineering" , at:"at Persian Golf University"},
+    {
+      id: "M.Sc.",
+      content: "Computer Engineering",
+      sub: "AI & Data Analytics",
+      at: "Politecnico di Torino",
+      period: "2022 – 2025",
+    },
+    {
+      id: "B.Sc.",
+      content: "Computer Engineering",
+      at: "Persian Gulf University",
+      period: "2018 – 2022",
+    },
   ],
   Language: [
-    {id: "English", content:"Proficional"},
-    {id: "Italian", content:"Intermediate"},
-  ]
-  
+    { id: "English",  content: "Professional",  level: 88 },
+    { id: "Italian",  content: "Intermediate",   level: 52 },
+    { id: "Persian",  content: "Native",          level: 100 },
+  ],
 }
 
-export const right_content = { 
-  Experiences:[
+export const right_content = {
+  Experiences: [
     {
-      startDate: "Oct. 2025",
+      startDate: "Oct 2025",
       endDate: "Present",
-      company: "Zirak (Collaborator @Reply)",
+      company: "Zirak — Collaborator @Reply",
       role: "Generative AI Engineer",
       employmentType: "Full-Time",
       workMode: "Hybrid",
-      description:
-        "Designed and implemented AI agents for automated test-code generation and QA workflows, while developing backend services to orchestrate multi-agent systems. Supported the deployment of AI agents and services on Microsoft Azure and collaborated closely with engineering teams to ensure scalable, reliable, and maintainable AI solutions.",
       location: "Turin, Italy",
-      bulet_point: [
-        "Architected a pipeline to map GitHub repositories into a knowledge graph and vector database for hybrid RAG",
-        "Built and deployed containerized AI agents for automated test-code generation",
-        "Developed an orchestrator to manage agent execution within multi-agent pipelines",
-        "Implemented WebSocket-based real-time communication between backend and frontend services",
-        "Applied advanced prompt engineering for LLM-based agents, including Chain-of-Thought, few-shot, and structured prompting",      
-        ],
-      stack:["Python", "LangGraph", "LangChain", "RAG", "Neo4j", "Vector-database", "Knowledge-Graph", "Docker", "Fastapi", "WebSocket", "Chain-of-Thought", "Prompt engineering", "Multithreaded Programming"],
+      projects: [
+        {
+          name: "Test Scripter Agent",
+          customer: "Customer A",
+          description:
+            "Designed and implemented AI agents for automated test-code generation and QA workflows, developing backend services to orchestrate multi-agent systems on Microsoft Azure.",
+          bulet_point: [
+            "Architected a pipeline mapping GitHub repos into a knowledge graph + vector DB for hybrid RAG",
+            "Built and deployed containerised AI agents for automated test-code generation",
+            "Developed an orchestrator to manage agent execution within multi-agent pipelines",
+            "Implemented WebSocket-based real-time communication between backend and frontend",
+            "Applied Chain-of-Thought, few-shot, and structured prompting for LLM-based agents",
+          ],
+          stack: ["Python", "LangGraph", "LangChain", "RAG", "Neo4j", "Vector DB", "Knowledge Graph", "Docker", "FastAPI", "WebSocket", "Prompt Engineering", "Multithreaded Programming"],
+        },
+        {
+          name: "Test Designer Agent",
+          customer: "Customer B",
+          description:
+            "Built a full-stack AI agent platform with a React frontend, Flask backend, and LangGraph-powered agents communicating in real time over WebSocket, with MCP integration for tool and context management.",
+          bulet_point: [
+            "Developed the React frontend for real-time agent interaction and conversation UI",
+            "Implemented MCP (Model Context Protocol) server and client for structured tool and context management",
+            "Built LangGraph-based conversational agents with stateful multi-turn logic",
+            "Designed Flask backend services to orchestrate agent execution and handle API routing",
+            "Implemented WebSocket layer for low-latency live communication between frontend and agent backend",
+          ],
+          stack: ["React", "JavaScript", "LangGraph", "Python", "Flask", "WebSocket", "MCP", "LangChain"],
+        },
+      ],
     },
     {
       startDate: "Sep 2024",
       endDate: "Oct 2025",
       company: "Politecnico di Torino",
-      role: "Applied AI Researcher",
-      project: "DARE project",
+      role: "AI Researcher & ML Engineer",
       employmentType: "Full-Time",
       workMode: "Hybrid",
-      description:
-        "Developed advanced computer vision pipelines combining guided latent diffusion, OOD detection, semantic data augmentation, and explainable AI to improve synthetic data generation, dataset quality, and weakly supervised segmentation.",
       location: "Turin, Italy",
-      bulet_point: [
-        "Developed and fine-tune prompt-driven high-resolution synthetic image–mask dataset using a guided latent diffusion model (VAE + DDPM), leveraging DDIM sampling and classifier-free guidance to improve image–mask alignment, achieving up to 10% IoU gains across object categories.",
-        "Trained a supervised contrastive learning model for out-of-distribution (OOD) detection, reaching 92% F1 score, and used it to clean image pools, inorder to enhancing downstream task accuracy",
-        "Designing data augmentation pipeline by leveraging semantic search within the embedding space to retrieve similar samples from unlabeled data, thereby expanding the training dataset for improved generative model performance.",
-        "Used Explainable AI (XAI) for pseudo-mask generation in weakly supervised segmentation, combining prototype learning and an affinity network to improve localization and segmentation accuracy. Leading to more reliable pseudo-labels and improved performance in low-annotation segmentation scenarios.",
-      ],
-      stack:[
-        "PyTorch",
-        "Torchvision",
-        "Python",
-        "VLM (Gemma-3)",
-        "DDPM",
-        "DDIM",
-        "VAE",
-        "OpenCV",
-        "Pandas",
-        "NumPy",
-        "Matplotlib",
-        "Scikit-learn",
-        "Grad-CAM",
-        "Conditional Random Fields (CRFs)",
-        "Weights & Biases (W&B)",
-        "Spark",
-        "HPC",
-        "Multi-GPU programming",
-        "Mixed-precision modeling",
-        "Gradient checkpointing",
-      ],
-    },
-    {
-      startDate: "Jun 2025",
-      endDate: "Aug 2025",
-      company: "Politecnico di Torino",
-      role: "Machine Learning Engineer",
-      project: "DIVINE Project",
-      employmentType: "Full-Time",
-      workMode: "Hybrid",
-      description:
-        "Implemented a transformer-based multi-label image classification approach using set-based prediction, complemented by a curriculum learning strategy to address severe class imbalance and improve performance on complex, long-tailed datasets.",
-      location: "Turin, Italy",
-      bulet_point: [
-        "Implemented a Query2Label (Q2L)-based transformer architecture for multi-label image classification, leveraging set-based prediction to capture inter-label dependencies and contextual relationships in complex image datasets.", 
-        "Addressed extreme class imbalance using a custom curriculum learning strategy, progressively increasing training difficulty by reorganizing data sampling based on label frequency and model confidence.",
-      ],
-      stack:[
-        "PyTorch",
-        "Torchvision",
-        "Python",
-        "OpenCV",
-        "Pandas",
-        "NumPy",
-        "TensorBoard",
+      projects: [
+        {
+          name: "DARE Project",
+          customer: "Computer Vision & Synthetic Data",
+          description:
+            "Built advanced computer vision pipelines combining guided latent diffusion, OOD detection, semantic data augmentation, and explainable AI to improve synthetic data generation and weakly supervised segmentation.",
+          bulet_point: [
+            "Fine-tuned a guided latent diffusion model (VAE + DDPM + DDIM) for synthetic image–mask generation — up to 10% IoU improvement across object categories",
+            "Trained a supervised contrastive learning model for OOD detection (92% F1), then used it to clean training pools and boost downstream task accuracy",
+            "Designed a semantic-search-based data augmentation pipeline over embedding space to expand training data for generative models",
+            "Applied XAI (Grad-CAM, prototype learning, affinity networks) for pseudo-mask generation in weakly supervised segmentation",
+          ],
+          stack: [
+            "PyTorch", "DDPM", "DDIM", "VAE", "VLM (Gemma-3)",
+            "OpenCV", "Grad-CAM", "CRFs", "Weights & Biases",
+            "Spark", "HPC", "Multi-GPU", "Mixed Precision", "Gradient Checkpointing",
+          ],
+        },
+        {
+          name: "DIVINE Project",
+          customer: "Multi-label Classification",
+          description:
+            "Implemented a transformer-based multi-label image classification approach using set-based prediction, with a custom curriculum learning strategy to address severe class imbalance on long-tailed datasets.",
+          bulet_point: [
+            "Implemented Query2Label (Q2L) transformer for multi-label classification — captures inter-label dependencies via set-based prediction",
+            "Designed a curriculum learning strategy that reorganises data sampling by label frequency and model confidence to address extreme class imbalance",
+          ],
+          stack: ["PyTorch", "Torchvision", "Python", "OpenCV", "Pandas", "NumPy", "TensorBoard"],
+        },
       ],
     },
   ],
-  Skills: 
-    {
-      "Machine Learning | Deep Learning" : 
-      [
-        "Synthetic Data Generation using Diffusion Models",
-        "Out-of-Distribution (OOD) Detection",
-        "Semantic Segmentation (Supervised, Weakly Supervised)",
-        "Explainable AI (XAI)",
-        "Curriculum learning",
-        "Image Classification (multi-class, multi-label)",
-        "Model Adaptation: Parameter-efficient fine-tuning (e.g., Adapters, LoRA)",
+  Skills: {
+    "Machine Learning & Deep Learning": [
+      "Synthetic Data Generation — Diffusion Models (DDPM, DDIM, VAE)",
+      "Out-of-Distribution (OOD) Detection & Contrastive Learning",
+      "Semantic Segmentation — Supervised & Weakly Supervised",
+      "Explainable AI (XAI): Grad-CAM, Prototype Learning",
+      "Curriculum Learning & Data Augmentation Strategies",
+      "Multi-label & Multi-class Image Classification",
+      "Parameter-Efficient Fine-Tuning (LoRA, Adapters)",
     ],
-      "Agentic AI & Autonomous Systems" : 
-      [
-        "ReAct-based agents with tool-calling",
-        "Retrieval-Augmented Generation (RAG)",
-        "Stateful agents with episodic and instructional memory for long-term context retention",
-        "Chain-of-Thought and few-shot prompting",
-        "Deployed LLMs locally via Ollama",
+    "Agentic AI & LLM Systems": [
+      "Multi-agent orchestration with LangGraph / LangChain",
+      "Hybrid RAG — vector databases + knowledge graphs (Neo4j)",
+      "ReAct agents with tool-calling & stateful memory",
+      "Chain-of-Thought, few-shot & structured prompting",
+      "Local LLM deployment via Ollama",
     ],
-      "Frameworks | Tools" : 
-      [
-        "Python, C, Java, JavaScript, React, PyTorch, TensorFlow, JAX",
-        "LangGraph, LangChain",
-        "Spark, Hadoop, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn",
-        "Neo4j, PostgreSQL, SQLAlchemy (ORM), MongoDB",
-        "Node.js, FastAPI, RESTful APIs",
-        "Linux, Bash, SLURM, HPC clusters, Docker",
-      ]
-    },
-
-};
+    "Engineering & Infrastructure": [
+      "Python, C, Java, JavaScript / React",
+      "PyTorch, TensorFlow, JAX — including multi-GPU & mixed precision",
+      "FastAPI, Node.js, WebSockets, RESTful APIs",
+      "Neo4j, PostgreSQL, SQLAlchemy, MongoDB",
+      "Docker, Linux, Bash, SLURM, HPC clusters",
+      "Spark, Hadoop, Pandas, NumPy, Scikit-learn",
+    ],
+  },
+}

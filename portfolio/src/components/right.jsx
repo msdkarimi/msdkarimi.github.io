@@ -1,177 +1,191 @@
+import { useState } from 'react';
+import { Box, Group, Stack, Text, Badge, List, Card, Collapse } from "@mantine/core";
 import {
-    Box,
-    Group,
-    Stack,
-    Text,
-    Badge,
-    ThemeIcon,
-    rem,
-    Paper,
-    Divider,
-    Flex,
-    Title,
-    List,
-    Card
-  } from "@mantine/core";
-  import { IconCalendar, IconMapPin, IconBriefcase, IconBuildingFactory2, IconTools } from "@tabler/icons-react";
-  import { right_content } from "../assets/data";
+  IconCalendar, IconMapPin, IconBriefcase,
+  IconBuildingFactory2, IconChevronDown,
+} from "@tabler/icons-react";
+import { right_content, profile } from "../assets/data";
 
-function RightSide({ all_refs, profile, child_paper_padding}){
-      
-    return(
-        <Box className="custom-box glass" radius="md" p={child_paper_padding} >
-            <RightContent all_refs={all_refs} child_paper_padding={child_paper_padding} profile={profile} experience={right_content}/>
-        </Box>
-    )
-}
+const accent = { color: 'var(--accent)' };
+const dim    = { color: 'var(--text-dim)' };
+const muted  = { color: 'var(--text-muted)' };
 
-function RightContent({ all_refs, child_paper_padding, profile, experience}){
-
-    const iconMappings = {Skills:<IconTools/>, Experiences:<IconBriefcase/>}
-
-    return(
-
-        <Stack>
-          <MyInfo child_paper_padding={child_paper_padding} profile={profile}/>
-          {
-            Object.entries(experience).map(([section, data])=>(
-              <Paper ref={all_refs[section].targetRef} key={section} ta="left" p="lg" radius="lg" withBorder w="100%" className="glass-child">
-                <Stack>
-                  <Group> 
-                    {iconMappings[section]}
-                    <Title  order={3} fw={700}>{section}</Title>
-                  </Group>
-                    <Divider className="divider-custom"  size={3} w="45%"  />
-                </Stack>
-              
-                {section !== "Skills"
-                  ? data.map((item, index) => (
-                      <ExperienceItem
-                        key={index}
-                        length={data.length}
-                        index={index}
-                        {...item}
-                      />
-                    ))
-                  : <BulletPoint section={section} bulet_point={data} />
-                }
-              </Paper>
-            ))}
-        </Stack>
-    )
-}
-
-  function MyInfo({child_paper_padding, profile}){
-    return(
-      <Stack ta="left" c="white" p={child_paper_padding*3}>
-        <Title order={2}>{profile.name}</Title>
-        <Title fw={200} mt={-15} order={2}>{profile.role}</Title>
-        <Divider className="divider-custom" color="#ff922b" size={2} w="50%" />
-        <Text size="lg" fw={200}>{profile.profile}</Text>
-      </Stack>
-    )
-  }
-
-  
-  export function ExperienceItem({
-    index,
-    length,
-    startDate,
-    endDate,
-    company,
-    role,
-    employmentType,
-    project,
-    workMode,
-    description,
-    location,
-    stack,
-    bulet_point,
-  }) {
-    return (
-    <Stack>
-      <Card className="experience-bg" mb={10} radius="md" px={15}>
-      <Group align="flex-start" gap={rem(5)}  wrap="nowrap" pb={5}>
-        <Stack gap="xs" flex={1}> 
-          <Flex justify="space-between" align="center">
-            <Stack>
-              <Title className="text-shadow" order={2} fw={400}>
-                {role}
-              </Title>
-              <Text fw={200} className="text-shadow" c="dimmed" ml={2} mt={-15}>{project}</Text>
-            </Stack>
-            <Badge
-            leftSection={<IconCalendar size={20} />}
-            variant="light"
-            radius="xs"
-            className="custom-color"
-          >
-            <Group><Text size="sm" fw={200}>{startDate}</Text> – <Text size="sm" fw={200}>{endDate ?? "Present"}</Text></Group>
-            </Badge>
-          </Flex>
-          <Group c="dimmed" gap="xs">
-            <ThemeIcon size={24} className="custom-color" variant="light" radius="xl">
-              <IconBuildingFactory2 size={24} />
-            </ThemeIcon>
-            <Text size="md">{company}</Text>
-            <ThemeIcon size={24} variant="light" radius="xl">
-              <IconMapPin className="custom-color" size={24} />
-            </ThemeIcon>
-            <Text size="md">{location} |</Text>
-            <Text >
-            {employmentType} • {workMode}
-          </Text>
+function RightSide({ all_refs, child_paper_padding }) {
+  return (
+    <Box className="cv-panel" p={child_paper_padding}>
+      <Stack gap="xs">
+        <ProfileInfo child_paper_padding={child_paper_padding} profile={profile} />
+        <Box
+          ref={all_refs["Experiences"].targetRef}
+          className="cv-section"
+          p="md"
+          style={{ textAlign: "left" }}
+        >
+          <Group gap={8} mb={4}>
+            <span style={accent}><IconBriefcase size={14} /></span>
+            <span className="cv-section-title">Experiences</span>
           </Group>
-          <Text ta="justify" fw={600} lh={1.6}>
+          <div className="cv-divider" style={{ width: "45%" }} />
+          <div className="cv-timeline">
+            {right_content.Experiences.map((item, index) => {
+              const isActive = !item.endDate || item.endDate === "Present";
+              return (
+                <div
+                  key={index}
+                  className={`cv-timeline-item${isActive ? ' cv-timeline-active' : ''}`}
+                >
+                  <ExperienceItem {...item} />
+                </div>
+              );
+            })}
+          </div>
+        </Box>
+      </Stack>
+    </Box>
+  );
+}
+
+function ProfileInfo({ child_paper_padding, profile }) {
+  return (
+    <Box className="cv-section" p={child_paper_padding * 3} style={{ textAlign: "left" }}>
+      <span className="cv-name">{profile.name}</span>
+      <br />
+      <span className="cv-role">{profile.role}</span>
+      <div className="cv-divider" style={{ width: "55%", marginTop: 10 }} />
+      <Text size="sm" style={{ ...dim, lineHeight: 1.75, marginBottom: 12 }}>
+        {profile.profile}
+      </Text>
+      {profile.highlights && (
+        <Group gap={6} wrap="wrap">
+          {profile.highlights.map((h, i) => (
+            <Badge key={i} className="cv-highlight">{h}</Badge>
+          ))}
+        </Group>
+      )}
+    </Box>
+  );
+}
+
+export function ExperienceItem({
+  startDate, endDate, company, role, employmentType,
+  project, workMode, description, location, stack, bulet_point, projects,
+}) {
+  return (
+    <Card className="cv-card" mb={10} p="md" radius="md">
+      {/* Header */}
+      <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 8 }}>
+        <Stack gap={2}>
+          <span className="cv-exp-role">{role}</span>
+          {project && !projects && (
+            <Text size="xs" style={{ ...accent, fontWeight: 500 }}>◆ {project}</Text>
+          )}
+        </Stack>
+        <Badge className="cv-badge" leftSection={<IconCalendar size={10} />}>
+          {startDate} – {endDate ?? "Present"}
+        </Badge>
+      </Box>
+
+      <Box mt={8} mb={projects ? 4 : 6}>
+        <Group gap={6} wrap="nowrap" className="cv-company-row">
+          <IconBuildingFactory2 size={13} style={{ flexShrink: 0, ...accent }} />
+          <Text size="sm" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", ...dim }}>
+            {company}
+          </Text>
+          <Text size="sm" style={{ flexShrink: 0, ...muted }}>·</Text>
+          <IconMapPin size={13} style={{ flexShrink: 0, ...accent }} />
+          <Text size="sm" style={dim}>{location}</Text>
+        </Group>
+        <Text size="xs" mt={2} ml={19} style={muted}>{employmentType} · {workMode}</Text>
+      </Box>
+
+      {/* Multi-project: collapsible blocks */}
+      {projects ? (
+        <Stack gap={6} mt={6}>
+          {projects.map((proj, i) => (
+            <ProjectBlock key={i} {...proj} defaultOpen={false} />
+          ))}
+        </Stack>
+      ) : (
+        /* Single-project (legacy) */
+        <>
+          <Text size="sm" ta="justify" lh={1.7} mb={8} style={dim}>{description}</Text>
+          <BulletList items={bulet_point} />
+          <span className="cv-label" style={{ display: 'block', marginTop: 10, marginBottom: 4 }}>Stack</span>
+          <Group gap={4} wrap="wrap">
+            {stack.map((item, i) => <Badge key={i} className="cv-badge">{item}</Badge>)}
+          </Group>
+        </>
+      )}
+    </Card>
+  );
+}
+
+function ProjectBlock({ name, customer, description, bulet_point, stack, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div className={`cv-project-block${open ? ' cv-project-block--open' : ''}`}>
+      {/* Clickable header */}
+      <Box
+        onClick={() => setOpen(o => !o)}
+        className="cv-project-header"
+      >
+        <Group justify="space-between" align="center" wrap="nowrap" gap={8}>
+          <Group gap={8} align="center" style={{ minWidth: 0, flex: 1 }}>
+            <span className="cv-project-name">{name}</span>
+            {customer && <span className="cv-customer-tag">{customer}</span>}
+          </Group>
+          <Group gap={4} align="center" style={{ flexShrink: 0 }}>
+            <Text size="xs" style={{ color: 'var(--accent)', fontWeight: 600 }}>
+              {open ? 'Show less' : 'Show more'}
+            </Text>
+            <IconChevronDown
+              size={12}
+              style={{
+                color: 'var(--accent)',
+                transform: open ? 'rotate(180deg)' : 'none',
+                transition: 'transform 0.2s ease',
+              }}
+            />
+          </Group>
+        </Group>
+
+        {/* One-line preview when collapsed */}
+        {!open && (
+          <Text size="xs" mt={4} style={{ ...muted, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }}>
             {description}
           </Text>
-        </Stack>
-      </Group>
-      <BulletPoint key={index} bulet_point={bulet_point}/>
-      <Text>Stack:</Text>
-      <Group gap="xs">
-        {stack.map((data, index)=> <Badge radius="md" tt="none" fw={400} variant="light" className="custom-color" key={index}>{data}</Badge>)}
-      </Group>
-      {/* { length -1  !== index ? <Divider className="divider-custom" size={1} mx="xl" /> : <></>} */}
-      </Card>
-      </Stack>
-      
-    );
-  }
+        )}
+      </Box>
 
-  function BulletPoint({ section, bulet_point }) {
-    return section === "Skills" ? (
-      <Stack>
-        {Object.entries(bulet_point).map(([title, data]) => (
-          <Stack key={title}>
-            <Card className="experience-bg" mb={10} radius="md" px={5}>
-            <Title fw={600} order={3}>{title}</Title>
-  
-            {data.length > 0 && (
-              <List size="md" withPadding>
-                {data.map((item, index) => (
-                  <List.Item ta="justify" fw={300} key={index}>
-                    {item}
-                  </List.Item>
-                ))}
-              </List>
-            )}
-            </Card>
-          </Stack>
-        ))}
+      {/* Expandable detail */}
+      <Collapse in={open}>
+        <Box pt={10}>
+          <Text size="sm" ta="justify" lh={1.7} mb={8} style={dim}>{description}</Text>
+          <BulletList items={bulet_point} />
+          {stack?.length > 0 && (
+            <>
+              <span className="cv-label" style={{ display: 'block', marginTop: 10, marginBottom: 6 }}>Stack</span>
+              <Group gap={4} wrap="wrap">
+                {stack.map((item, i) => <Badge key={i} className="cv-badge">{item}</Badge>)}
+              </Group>
+            </>
+          )}
+        </Box>
+      </Collapse>
+    </div>
+  );
+}
 
-      </Stack>
-    ) : (
-      <List size="md" pt="xs">
-        {bulet_point.map((item, index) => (
-          <List.Item ta="justify" pt="xs" fw={300} key={index}>
-            {item}
-          </List.Item>
-        ))}
-      </List>
-    );
-  }
-  
-    
+function BulletList({ items }) {
+  if (!items?.length) return null;
+  return (
+    <List size="sm" spacing={4} style={{ paddingLeft: 16 }} mb={4}>
+      {items.map((item, i) => (
+        <List.Item key={i} style={{ ...dim, lineHeight: 1.65, textAlign: "justify" }}>{item}</List.Item>
+      ))}
+    </List>
+  );
+}
 
-export default RightSide
+export default RightSide;

@@ -1,64 +1,73 @@
-import { Container, Grid, Box, Flex, NavLink, Title, Group, UnstyledButton, Text } from '@mantine/core';
-import { personal_data, education, profile } from '../assets/data';
+import { useState, useEffect } from 'react';
+import { Container, Grid, ActionIcon, Tooltip } from '@mantine/core';
+import { IconSun, IconMoon } from '@tabler/icons-react';
+import { profile } from '../assets/data';
 import { useScrollIntoView } from '@mantine/hooks';
-import { IconTimeDuration10 } from "@tabler/icons-react";
 
 import RightSide from './right';
 import LeftSide from './left';
+import SkillsPanel from './skills';
 
-function Main(){
-    const child_paper_padding = 8
-    const duration = 1000
-    const offset = child_paper_padding * 10
-    const profileRef = useScrollIntoView({ offset: offset, duration: duration });
-    const experienceRef = useScrollIntoView({ offset: offset, duration: duration });
-    const langRef = useScrollIntoView({ offset: offset, duration: duration });
-    const skillsRef = useScrollIntoView({ offset: offset, duration: duration });
-    const eduRef = useScrollIntoView({ offset: offset, duration: duration });
-    const all_refs = {Profile:profileRef, Experiences:experienceRef, Education:eduRef, Language:langRef, Skills:skillsRef}
+function ColorToggle() {
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('cv-theme') || 'night'
+  );
 
-    return(
-        <Container p={5} size="md">
-          <Header 
-            onProfile={() => profileRef.scrollIntoView()}
-            onLang={() => langRef.scrollIntoView()}
-            onSkills={() => skillsRef.scrollIntoView()}
-            all_refs={all_refs}
-          />
-          <Grid gutter={child_paper_padding} h="100%" pt={child_paper_padding*5}>
-            
-            <Grid.Col span={4} h="100%">
-              <LeftSide all_refs={all_refs} child_paper_padding={child_paper_padding} personal_data={personal_data} education={education}/>
-            </Grid.Col>
-        
-            <Grid.Col span={8} h="100%" >
-              <RightSide all_refs={all_refs} profile={profile} child_paper_padding={child_paper_padding}/>
-            </Grid.Col>
-          </Grid>
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('cv-theme', theme);
+  }, [theme]);
 
-        </Container>
-        
-    )
-}
-
-function Header({ all_refs }) {
+  const isDay = theme === 'day';
   return (
-    <Box className="custom-box glass header-fixed" >
-      <Group gap="xl" px={30} w="100%">
-        {Object.entries(all_refs).map(([section, item]) => (
-          <UnstyledButton
-            key={section}
-            onClick={() => item.scrollIntoView()}
-          >
-            <Title c="white" order={3} fw={200}>
-              {section}
-            </Title>
-          </UnstyledButton>
-        ))}
-      </Group>
-    </Box>
+    <Tooltip label={isDay ? 'Switch to Night' : 'Switch to Day'} position="left">
+      <ActionIcon
+        className="cv-toggle"
+        onClick={() => setTheme(isDay ? 'night' : 'day')}
+        size="lg"
+      >
+        {isDay ? <IconMoon size={18} /> : <IconSun size={18} />}
+      </ActionIcon>
+    </Tooltip>
   );
 }
 
+function Main() {
+  const p = 8;
+  const offset = p * 10;
+  const duration = 1000;
 
-export default Main
+  const profileRef    = useScrollIntoView({ offset, duration });
+  const experienceRef = useScrollIntoView({ offset, duration });
+  const langRef       = useScrollIntoView({ offset, duration });
+  const skillsRef     = useScrollIntoView({ offset, duration });
+  const eduRef        = useScrollIntoView({ offset, duration });
+
+  const all_refs = {
+    Profile:     profileRef,
+    Experiences: experienceRef,
+    Education:   eduRef,
+    Language:    langRef,
+    Skills:      skillsRef,
+  };
+
+  return (
+    <Container p={5} size="xl">
+      <ColorToggle />
+      {/* pt clears the fixed toggle button on all screen sizes */}
+      <Grid gutter={p} pt={{ base: 52, sm: 52, md: p * 2 }}>
+        <Grid.Col span={{ base: 12, sm: 4, md: 3 }}>
+          <LeftSide all_refs={all_refs} child_paper_padding={p} />
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, sm: 8, md: 5 }}>
+          <RightSide all_refs={all_refs} profile={profile} child_paper_padding={p} />
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, md: 4 }}>
+          <SkillsPanel skillsRef={skillsRef} child_paper_padding={p} />
+        </Grid.Col>
+      </Grid>
+    </Container>
+  );
+}
+
+export default Main;

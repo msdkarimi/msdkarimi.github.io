@@ -1,114 +1,460 @@
 #root {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
-  
 }
 
-.custom-box {
-  background-color: rgba(169, 169, 169, 0.1);
-  border-radius: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  
-}
+/* ─── Panels ─────────────────────────────────────────────────── */
 
-.glass {
-  /* background: linear-gradient(
-    0deg,
-    rgba(253, 126, 20, 0.908),  
-    rgba(255, 255, 255, 0.002)
-  ); */
-
-  /* background: rgba(253, 126, 20, 0.408); */
-  /* background: rgba(66, 66, 66, 0.408); */
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-
-  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.829);
-}
-
-.text-shadow {
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.356);
-}
-
-.glass-child {
-  /* background: rgba(255,255,255,0.9); */
-  background: #ced4da;
-
-
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-
-  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
-}
-
-.divider-custom {
+.cv-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  margin-top: -5px;
-  margin-bottom: 10px;
-  border-color: #FC8A08;
+  box-shadow: 0 1px 4px var(--shadow);
 }
 
-.experience-bg {
-  background: #ced4da;
-  box-shadow: 0 10px 40px rgba(227, 227, 227, 0.645);
+.cv-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
-
-.custom-color {
-  color: #3B3979;
+.cv-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
-.header-fixed {
-  position: fixed;
-  top: 2%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+/* ─── Divider ────────────────────────────────────────────────── */
+
+.cv-divider {
+  height: 2px !important;
+  background: linear-gradient(to right, var(--accent), transparent) !important;
+  border: none !important;
+  border-radius: 2px !important;
+  margin: 8px 0 12px 0 !important;
 }
 
-.vertical-header {
-  position: fixed;
-  top: 50%;
-  left: 100px;
-  transform: translateY(-50%);
-  z-index: 1000;
+/* ─── Typography ─────────────────────────────────────────────── */
 
+.cv-name {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.cv-role {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1.5;
+}
+
+.cv-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+.cv-exp-role {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.cv-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: var(--text-muted);
+}
+
+/* ─── Badges ─────────────────────────────────────────────────── */
+
+.cv-badge {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+  border: 1px solid var(--accent-border) !important;
+  border-radius: 4px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  padding: 2px 7px !important;
+  height: auto !important;
+  line-height: 1.6 !important;
+  font-family: inherit !important;
+}
+
+.cv-highlight {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+  border: 1px solid var(--accent-border) !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 3px 12px !important;
+  height: auto !important;
+}
+
+/* ─── Links ──────────────────────────────────────────────────── */
+
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.15s;
+}
+
+.cv-link:hover { color: var(--accent); }
+
+/* ─── Stats grid ─────────────────────────────────────────────── */
+
+.cv-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.cv-stat {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.cv-stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.cv-stat-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Language bars ──────────────────────────────────────────── */
+
+.cv-lang-bar {
+  height: 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.cv-lang-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--accent) 60%, var(--accent-border));
+  border-radius: 3px;
+}
+
+/* ─── Download CV button ─────────────────────────────────────── */
+
+.cv-download-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 35%, transparent);
+  box-sizing: border-box;
 }
 
-.btn-circle {
-  --size: 48px;
+.cv-download-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 45%, transparent);
+}
 
-  width: var(--size);
-  height: var(--size);
+.cv-download-btn:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ─── Multi-project blocks inside an experience card ─────────── */
+
+.cv-project-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: border-left-color 0.2s, background 0.15s;
+}
+
+.cv-project-block--open {
+  border-left-color: var(--accent);
+}
+
+.cv-project-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.cv-project-header:hover .cv-project-name {
+  color: var(--accent);
+}
+
+.cv-project-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+
+.cv-customer-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── Experience timeline ────────────────────────────────────── */
+
+.cv-timeline {
+  position: relative;
+  padding-left: 28px;
+  margin-top: 4px;
+}
+
+/* Vertical line — accent at top fading to border then transparent */
+.cv-timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent)   0%,
+    var(--accent)   25%,
+    var(--border)   70%,
+    transparent    100%
+  );
+  border-radius: 2px;
+}
+
+/* Item */
+.cv-timeline-item {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+/* Dot — hollow ring for past positions */
+.cv-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 16px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-
-  background: #2b2b2b;
-  color: rgb(196, 4, 4);
-
-  box-shadow: 
-    0px 0px 15px rgba(0, 0, 0, 0.95);
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  z-index: 1;
+  transition: border-color 0.25s;
 }
 
-.btn-circle:active {
-  box-shadow:
-    inset 0px 0px 15px #2e2e2e,
-    inset 0px 0px 15px #2e2e2e;
+/* Short horizontal connector from dot to card */
+.cv-timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -13px;
+  top: 22px;
+  width: 13px;
+  height: 1px;
+  background: var(--border);
 }
 
+/* Active dot — filled + pulsing ring (current / "Present" job) */
+.cv-timeline-active::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  width: 14px;
+  height: 14px;
+  left: -26px;
+  top: 15px;
+  box-shadow: 0 0 0 3px var(--accent-bg);
+  animation: cv-dot-pulse 2.5s ease-in-out infinite;
+}
 
+/* Accent left border on the active card */
+.cv-timeline-active .cv-card {
+  border-left: 2px solid var(--accent) !important;
+}
 
+@keyframes cv-dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--accent-bg); }
+  50%       { box-shadow: 0 0 0 7px var(--accent-bg); }
+}
 
+/* ─── Color scheme toggle ────────────────────────────────────── */
+
+.cv-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-dim) !important;
+  border-radius: 8px !important;
+  transition: color 0.15s, background 0.15s !important;
+}
+
+.cv-toggle:hover {
+  color: var(--accent) !important;
+  background: var(--surface-2) !important;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+
+/* ── Tablet (768 – 991px): left + experience side-by-side, skills below */
+@media (max-width: 991px) {
+  .cv-name          { font-size: 22px; }
+  .cv-role          { font-size: 13px; }
+  .cv-exp-role      { font-size: 13px; }
+  .cv-section-title { font-size: 10px; }
+  .cv-stat-value    { font-size: 16px; }
+}
+
+/* ── Mobile (< 768px): single column */
+@media (max-width: 767px) {
+  #root { padding: 0.75rem; }
+
+  .cv-toggle { top: 10px; right: 10px; }
+
+  .cv-name          { font-size: 20px; }
+  .cv-role          { font-size: 13px; }
+  .cv-exp-role      { font-size: 13px; }
+  .cv-section-title { font-size: 10px; letter-spacing: 1px; }
+
+  /* Company row: allow wrap so long names don't overflow */
+  .cv-company-row   { flex-wrap: wrap !important; }
+
+  /* Timeline: slightly tighter to save horizontal space */
+  .cv-timeline               { padding-left: 22px; }
+  .cv-timeline::before       { left: 7px; }
+  .cv-timeline-item::before  { left: -18px; width: 10px; height: 10px; top: 17px; }
+  .cv-timeline-item::after   { left: -9px;  width: 9px;  top: 21px; }
+  .cv-timeline-active::before{ left: -19px; width: 12px; height: 12px; top: 16px; }
+
+  /* Sections: reduce padding */
+  .cv-section,
+  .cv-panel { padding: 10px !important; }
+
+  /* Download button */
+  .cv-download-btn { font-size: 12px; padding: 9px 14px; }
+}
+
+/* ── Small mobile (< 480px) */
+@media (max-width: 479px) {
+  #root { padding: 0.4rem; }
+
+  .cv-name          { font-size: 17px; }
+  .cv-role          { font-size: 12px; }
+  .cv-exp-role      { font-size: 12px; }
+  .cv-section-title { font-size: 9px;  }
+
+  .cv-stat-value    { font-size: 14px; }
+  .cv-stat-label    { font-size: 8px;  }
+  .cv-stat          { padding: 8px 4px; }
+
+  .cv-badge         { font-size: 9px !important; padding: 1px 5px !important; }
+  .cv-highlight     { font-size: 10px !important; padding: 2px 8px !important; }
+
+  .cv-project-name  { font-size: 11px; }
+  .cv-customer-tag  { font-size: 8px; padding: 1px 6px; }
+
+  .cv-download-btn  { font-size: 11px; padding: 8px 12px; }
+
+  /* Tighter timeline */
+  .cv-timeline            { padding-left: 18px; }
+  .cv-timeline::before    { left: 5px; }
+  .cv-timeline-item::before { left: -15px; width: 8px; height: 8px; top: 18px; }
+  .cv-timeline-item::after  { left: -7px;  width: 7px; top: 22px; }
+  .cv-timeline-active::before { left: -16px; width: 10px; height: 10px; top: 17px; }
+}
+
+/* ─── Print ──────────────────────────────────────────────────── */
+@media print {
+  /* Hide interactive / decorative elements */
+  .cv-toggle,
+  .cv-download-btn      { display: none !important; }
+
+  /* Force light background and dark text */
+  body                  { background: #fff !important; color: #1f2328 !important; }
+
+  .cv-panel,
+  .cv-section,
+  .cv-card,
+  .cv-project-block     {
+    background: #fff !important;
+    border-color: #d0d7de !important;
+    box-shadow: none !important;
+  }
+
+  /* Expand all collapsed project blocks */
+  .cv-project-block > div[style*="height: 0"],
+  .cv-project-block > div[style*="overflow: hidden"] {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Flatten layout: one wide column */
+  .mantine-Grid-root     { display: block !important; }
+  .mantine-Grid-col      { width: 100% !important; max-width: 100% !important; }
+
+  /* Keep text legible on paper */
+  .cv-name               { color: #1f2328 !important; font-size: 22px !important; }
+  .cv-role               { color: #0969da !important; }
+  .cv-section-title      { color: #656d76 !important; }
+  .cv-accent             { color: #0969da !important; }
+
+  /* No page break inside a card */
+  .cv-card,
+  .cv-timeline-item      { page-break-inside: avoid; break-inside: avoid; }
+}
