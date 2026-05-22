@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Document body -->
+  <rect x="4" y="2" width="19" height="26" rx="2.5" fill="#0969da"/>
+  <!-- Folded corner shadow -->
+  <path d="M17 2 L23 8 H17 Z" fill="rgba(0,0,0,0.22)"/>
+  <!-- Name bar -->
+  <rect x="7" y="7" width="8" height="2.5" rx="1.25" fill="white"/>
+  <!-- Subtitle line -->
+  <rect x="7" y="11" width="12" height="1.5" rx="0.75" fill="white" opacity="0.8"/>
+  <!-- Divider -->
+  <rect x="7" y="14.5" width="13" height="0.75" rx="0.375" fill="white" opacity="0.3"/>
+  <!-- Content lines -->
+  <rect x="7" y="17" width="11" height="1.5" rx="0.75" fill="white" opacity="0.75"/>
+  <rect x="7" y="20" width="13" height="1.5" rx="0.75" fill="white" opacity="0.75"/>
+  <rect x="7" y="23" width="9"  height="1.5" rx="0.75" fill="white" opacity="0.6"/>
+</svg>
